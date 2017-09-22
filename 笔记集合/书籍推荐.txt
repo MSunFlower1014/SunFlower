@@ -1,0 +1,40 @@
+入门
+《Head First Java, 2nd Edition(中文版)》这本书不仅内容丰富、有趣且通俗易懂，并且涵盖了所有 Java 相关的基础知识。如果你是 Java 初学者，这本书正适合你。
+《Java 核心技术(卷1、2)》写作风格相比 Head First 趣味性来说更显传统，所涵盖的内容包括 Java 基础知识及高级应用，是对于入门来说的另一种选择。
+
+
+进阶
+《Java 编程思想(第4版)》必读之作，不仅涵盖所有 Java 基础，对于编程思想层面的提升也有很好的帮助。
+《Head First 设计模式》延续 Head First 一贯生动趣味的写作风格，介绍 23 个设计模式，推荐作为设计模式入门级书。
+《Effective Java 中文版(第2版)》Java 编程中78条极具实用价值的经验规则，这些经验规则涵盖了大多数开发人员每天所面临的问题的解决方案。
+《重构:改善既有代码的设计》出自于 Martin Fowler 的大作，写出优秀代码的必经之路。
+《Java Concurrency in Practice》了解 Java 并发编程必读佳作，建议阅读英文版。
+另外，《Java 7 Concurrency Cookbook》也是 Java 并发入门学习的书籍：Java 7 并发编程指南中文版
+
+高级
+《深入理解 Java 虚拟机》出自于 icyfenix 之手，可以作为了解 JVM 及 Java 内存管理的入门书籍。《Java 虚拟机规范(Java SE 7版)》作者是 Java 编程语言的主要贡献者之一。如果你想系统、全面、深入的学习 JVM，绝对不能错过这本书。
+J2EE《企业应用架构模式 》出自于 Martin Fowler 的大作，软件设计、架构经典之作。
+《分布式 Java 应用：基础与实践》来自淘宝大牛 bluedavy，推荐作为学习分布式应用入门书籍。
+
+
+为什么不推荐购买框架类书？经典永远不会过时。以上大多数书可能有上10年之久，在技术发展如此之快的当今，这些书仍然被大家所推崇。而反观一些框架类书籍，如前几年流行 Struts，各类 Struts 书满天飞，而如今呢？如果你仅仅是学习使用框架，如 Spring，通过 Google已经能解决大多数问题了。且官方文档、示例已经非常齐全，完全可以最快时间获取到相关技术资料。如果你想学习原理或设计，这点在于 Java 所有流行的框架都是完全开源的，通过开源代码或官方文档已足已学习原理。再不不济，现在各类源码分析的文章一大把，Google 之！
+
+
+
+
+如果你希望从零基础开始做一个Java程序员，那么我建议的这些书的阅读顺序是这样的（每项读一本就OK了）： 
+1. Computer Concepts / Computer Science Illuminated 
+2. The C Programming Language 
+3. Core Java (Vol. 1 & Vol. 2) / Introduction to Java Programming 
+4. MySQL Crash Course / 深入浅出mysql / Sams Teach Yourself SQL in 10 Minutes 
+5. Thinking in Java / Effective Java / 编写高质量代码：改善Java程序的151个建议 
+6. Servlet & JSP: A Tutorial / Head First Servlets & JSP 
+7. Java与模式 / Design Patterns Explained / 设计模式之禅 
+8. 精通hibernate / java Persistence with Hibernate 
+9. spring in Action / Spring企业应用开发实战 / Spring技术内幕 
+10. Clean Code / Refactoring Impoving the Design of Existing Code 
+11. The Well-Grounded Java Developer 
+12. Algorithms / Data Structures and Algorithm Analysis in Java 
+13. POJOs in Action / Core J2EE Patterns: Best Practices and Design Strategies 
+14. Java Performance 
+15. Software Engineering A Practitioner’s Approach

@@ -1,0 +1,28 @@
+递归
+例：n=1237
+则输出为：1237，2474，4948，9896，9896，4948，2474，1237，
+      public static void doubleNum(int n)
+	{
+		System.out.println(n);
+		if(n<=5000)
+		         doubleNum(n*2);
+		System.out.println(n);		
+	}
+字符串反转
+ public static String reverse(String originStr) {
+        if(originStr == null || originStr.length() <= 1) 
+            return originStr;
+        return reverse(originStr.substring(1)) + originStr.charAt(0);
+    }
+
+
+位运算
+十进制转化为二进制
+  int i=20;
+  for(int j =32;j>0;j--){
+        int k;
+        k=（i>>i）&1;
+syso   k;
+}
+
+Math.round   四舍五入的原理是在参数上加0.5然后进行下取整。Math.round(11.5)的返回值是12，Math.round(-11.5)的返回值是-11。

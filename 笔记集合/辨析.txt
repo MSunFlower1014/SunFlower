@@ -1,0 +1,86 @@
+String中null和""的区别：
+String a;  申明一个string类型的 a，即没有在申请内存地址，更没有在内存任何指向引用地址;
+String a = null ;   申明一个string类型的 a，同时在内存里申请了一个地址，但是该地址不指向任何引用地址；输出null.
+String a = "" ；申明一个string类型的 a，既在内存里申请了地址，该地址又指向一个引用该字符串的引用地址；输出空格。
+String类型的基本数据类型从第一位开始比较，10000 会比233小。
+
+整数默认是int类型，浮点数默认是double 类型。即如果要赋值给除int,double类型直接运算的数字，数字会自动转为int,double。必须强转为赋值类型。
+
+==与equal的区别：
+“==”对于基本数据类型，判断两个变量的值是否相等。 
+“equal”不能用于基本数据类型。只能用于类变量。对于基本数据类型要用其包装类。
+“==”比较的是值【变量(栈)内存中存放的对象的(堆)内存地址】 。
+ equal用于比较两个对象的值是否相同【不是比地址】。
+【特别注意】Object类中的equals方法和“==”是一样的，没有区别，而String类，Integer类等等          一些类，是重写了equals方法，才使得equals和“==不同”，所以，当自己创建类时，自动继承了          Object的equals方法，要想实现不同的等于比较，必须重写equals方法。 
+
+在应用循环结构时，其中计算二层循环符合条件次数的数要在首层循环中赋值，不然会将所有循环符合类型次数相加，而不是单词循环是否符合，导致结果出错。
+
+For type byte, the default value is zero, that is, the value of (byte)0. 
+For type short, the default value is zero, that is, the value of (short)0. 
+For type int, the default value is zero, that is, 0. 
+For type long, the default value is zero, that is, 0L. 
+For type float, the default value is positive zero, that is, 0.0f. 
+For type double, the default value is positive zero, that is, 0.0d. 
+For type char, the default value is the null character, that is, '\u0000'. 
+For type boolean, the default value is false.
+
+String是一个特殊的包装类数据。
+可以用： 
+String str = new String("abc"); 
+String str = "abc"; 
+      两种的形式来创建，第一种是用new()来新建对象的，它会在存放于堆中。每调用一次就会创建一个新的对象。 而第二种是先在栈中创建一个对String类的对象引用变量str，然后查找常量池中有没有存放"abc"，如果没有，则将"abc"存放进常量池，并令str指向"abc"，如果已经有”abc”则直接令str指向“abc”。
+http://developer.51cto.com/art/201106/266454.htm   //java中String和常量池
+
+数组和集合：
+数组的类型是在运行期间检查的，但集合的类型检查只会发生在编译期间。暨在数组中放入需要类型的子类，在编译时不会报错，但运行时会报错。两者都不能放入非要求的类型。但是在编译过后生成的class文件会将泛型擦除。
+
+try catch finally 和return
+异常捕获要返回数据类型时，如果有finall就必然会执行finally的返回值，若有，当有异常是执行catch里
+的返回值，若没有，则执行try里的返回值。若finally中没有返回值，则在catch和try中把返回值压入栈
+中，再执行finally中语句，并不会改变返回值。
+如果finally中没有return语句，但是改变了要返回的值，这里有点类似与引用传递和值传递的区别，分以下两种情况，：
+1）如果return的数据是基本数据类型或文本字符串，则在finally中对该基本数据的改变不起作用，try中的return语句依然会返回进入finally块之前保留的值。
+2）如果return的数据是引用数据类型，而在finally中对该引用数据类型的属性值的改变起作用，try中的return语句返回的就是在finally中改变后的该属性的值。
+
+try里面是你没有出现异常，也就是你的程序正常执行的处理部分
+catch里面是在try出现异常后转到的部分，不出现异常的话，这部分不会执行
+finally则是顺序下来的，一定汇报执行的部分，通常我们在这里执行一些程序
+必须要执行的当作。
+
+HashMap可以用null做key和value      HashTable  不可以用null做key和value。
+HashMap  无参构造器的默认容量为16           ArrayList 无参构造器的默认容量为10，不足时变为1.5倍。
+Vector  默认容量为10，超过时会new一个100%的浪费内存，即变为两倍
+扩容为底层自动扩展。集合的size是实际存储的对象数值。
+
+方法重载为什么不设置返回值重载？
+void func（）{}； 
+int func(){}； 
+只要根据上下文判断返回值类型就行了，但是有以下情况：我们调用func（）方法，而且忽略返回值类型，比如 func（）； 这个时候，我们关心的不是返回值，而是方法本身的其他效果。此时，就无法区分出到底是调用的哪个方法，所以，不能根据返回值类型来进行方法的重载。 
+
+switch的参数限制？
+switch后面的括号里面只能放int类型的值，注意是只能放int类型，但是放byte，short，char类型的也可以，是因为byte，short，shar可以自动提升（自动类型转换）为int，所以可以看做可以放int，byte，short，char。 java 7增强了switch语句的功能，允许switch语句的控制表达式是java.lang.String类型的变量或表达式，开始支持java.lang.String类型，但是不支持StringBuffer或StringBuilder这两种类型。
+从Java 5开始，Java中引入了枚举类型，expr也可以是enum类型。
+
+要序列化的对象一定要实现Serializable接口。
+
+线程中sleep和wait的区别？
+1.wait是属于Object类中的方法，而sleep是属于Thread的方法。
+2.sleep没有释放线程持有的锁，而wait释放了该线程持有的锁。
+3.wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用。
+
+
+sleep和yield的区别？
+① sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；yield()方法只会给相同优先级或更高优先级的线程以运行的机会； 
+② 线程执行sleep()方法后转入阻塞（blocked）状态，而执行yield()方法后转入就绪（ready）状态； 
+③ sleep()方法声明抛出InterruptedException，而yield()方法没有声明任何异常； 
+④ sleep()方法比yield()方法（跟操作系统CPU调度相关）具有更好的可移植性。
+
+Int和Integer的区别？
+Java为每一个基本数据类型都引入了对应的包装类型（wrapper class），int的包装类就是Integer，从Java 5开始引入了自动装箱/拆箱机制，使得二者可以相互转换。 
+Java 为每个原始类型提供了包装类型： 
+- 原始类型: boolean，char，byte，short，int，long，float，double 
+- 包装类型：Boolean，Character，Byte，Short，Integer，Long，Float，Double
+如果整型字面量的值在-128到127之间，那么不会new新的Integer对象，而是直接引用常量池中的Integer对象。
+Integer f1 = 100, f2 = 100, f3 = 150, f4 = 150;
+System.out.println(f1 == f2);     //true
+ System.out.println(f3 == f4);   //false

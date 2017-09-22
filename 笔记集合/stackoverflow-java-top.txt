@@ -1,0 +1,301 @@
+基础语法：
+1.jaca +=操作符实质？
+     int i = 5;  long j = 8;
+    这时 i = i + j 不能编译，但 i += j 却可以编译。
+     E1 op= E2 ，其实等同于 E1 = (T)((E1) op (E2))，底层实现了类型转换。
+2.inPutStream转化为String？
+   将InputStream转换为字符串的方法：
+   1.使用IOUtils.toString（Apache Utils）
+   String result = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+   2.使用CharStreams（guava）
+   String result = CharStreams.toString(new InputStreamReader(
+    inputStream, Charsets.UTF_8));
+   3.使用Scanner（JDK）
+   Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+   String result = s.hasNext() ? s.next() : "";
+   4.使用Stream Api（Java 8）。警告：此解决方案将不同的换行符（如\r\n）转换为\n。
+   String result = new BufferedReader(new InputStreamReader
+                   (inputStream)).lines().collectCollectors.joining("\n"));
+5.使用并行流Api（Java 8）。警告：此解决方案将不同的换行符（如\r\n）转换为\n。
+   String result = new BufferedReader(new InputStreamReader(inputStream)).lines()
+                       .parallel().collect(Collectors.joining("\n"));
+6.使用InputStreamReader和StringBuilder（JDK）
+      final int bufferSize = 1024;
+      final char[] buffer = new char[bufferSize];
+      final StringBuilder out = new StringBuilder();
+      Reader in = new InputStreamReader(inputStream, "UTF-8");
+      for (; ; ) {
+     int rsz = in.read(buffer, 0, buffer.length);
+      if (rsz < 0)
+        break;
+      out.append(buffer, 0, rsz);
+       }
+      return out.toString();
+7.使用StringWriter和IOUtils.copy（Apache Commons）
+      StringWriter writer = new StringWriter();
+      IOUtils.copy(inputStream, writer, "UTF-8");
+      return writer.toString();
+8.使用ByteArrayOutputStream和inputStream.read（JDK）
+         ByteArrayOutputStream result = new ByteArrayOutputStream();
+         byte[] buffer = new byte[1024];
+         int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+        result.write(buffer, 0, length);
+        }
+        // StandardCharsets.UTF_8.name() > JDK 7
+       return result.toString("UTF-8");
+9.使用BufferedReader（JDK）。警告：此解决方案将不同的换行符（如\n\r）转换为line.separator系     统属性（例如，在Windows中将其转换为“\ r \ n”）。
+       String newLine = System.getProperty("line.separator");
+       BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+       StringBuilder result = new StringBuilder();
+       String line; boolean flag = false;
+       while ((line = reader.readLine()) != null) {
+       result.append(flag? newLine: "").append(line);
+       flag = true;
+       }
+        return result.toString();
+10.使用BufferedInputStream和ByteArrayOutputStream（JDK）
+       BufferedInputStream bis = new BufferedInputStream(inputStream);
+       ByteArrayOutputStream buf = new ByteArrayOutputStream();
+       int result = bis.read();
+      while(result != -1) {
+      buf.write((byte) result);
+      result = bis.read();
+       }
+      // StandardCharsets.UTF_8.name() > JDK 7
+      return buf.toString("UTF-8");
+11.使用inputStream.read（）和StringBuilder （JDK）。警告：此解决方案与Unicode有问题，例如使用       俄语文本（仅使用非Unicode文本正常工作）
+    int ch;
+    StringBuilder sb = new StringBuilder();
+    while((ch = inputStream.read()) != -1)
+    sb.append((char)ch);
+    reset();
+    return sb.toString();
+    警告：
+    解决方案4，5以及9不同的换行转换为一个。
+    解决方案11无法正常使用Unicode文本
+3.将数组转化为list？
+(使用array.aslist方法)
+Arrays.asList() 返回的是Arrays内部静态类，而不是Java.util.ArrayList的类。这个java.util.Arrays.ArrayList有set(),get(),contains()方法，但是没有任何add() 方法，所以它是固定大小的  这样做生成的list，是定长的。如果你对它做add或者remove，都会抛UnsupportedOperationException
+如果修改数组的值，list中的对应值也会改变！
+(使用collections.addall方法)
+Collections.addAll(arraylist, array);   将所有指定元素添加到指定 collection 中
+4.HashMap遍历?
+方法#1 使用For-Each迭代entries
+注意：For-Each循环是Java5新引入的，所以只能在Java5以上的版本中使用。如果你遍历的map是null的话，For-Each循环会抛出NullPointerException异常，所以在遍历之前你应该判断是否为空引用。
+方法#2 使用For-Each迭代keys和values
+方法#3 使用Iterator迭代
+首先，它是遍历老java版本map的唯一方法。另外一个重要的特性是可以让你在迭代的时候从map中删除entries的(通过调用iterator.remover())唯一方法.如果你试图在For-Each迭代的时候删除entries，你将会得到unpredictable resultes 异常。
+方法#4 迭代keys并搜索values（低效的）
+5.public,protect,private,不加修饰符？
+ | 类| 套餐| 子类| 子类| 世界|
+      |（同pkg）| diff pkg |
+  +     +      +      +      +    public
+  +     +      +      +            protect
+  +     +      +                    没有修饰符
+  +                                    private
+特别注意子类分为同包下和不同包下
+6.如何测试一个数组是否包含指定的值？
+（直接调用方法） Arrays.asList(...).contains(...)       
+  使用 Apache Commons Lang包中的ArrayUtils.contains
+ (自己写逻辑)  无序数组直接for循环查找，有序数组二分查找法。若数组中包含的是对象，比较 hashcode 和 使用equal 方法。
+7.打断多层循环示例？
+public class Test {  
+  public static void main(String[] args) {  
+    outerloop:  
+    for (int i=0; i < 5; i++) {  
+      for (int j=0; j < 5; j++) {  
+        if (i * j > 6) {  
+          System.out.println("Breaking");  
+          break outerloop;  
+        }  
+      }  
+    }  
+  }  
+}  
+8.如何将String转换为int？
+   Integer x = Integer.valueOf(str);
+   // or
+   int y = Integer.parseInt(str);
+   valueOf返回的是java.lang.Integer的实例
+   parseInt返回的是基本数据类型 int
+   需注意的是，在做int类型转换时，当转换的字符串不是数字时可能会抛出NumberFormatException，   因此要做好异常捕获
+9.使用split分割字符串
+  需要注意的是，该方法的参数是个正则表达式,要注意对某些字符做转码。例如，.在正则表达式中表示任  意字符，因此，如果你要通过.号做分割，需要这样写，split("\\.")或者split(Pattern.quote("."))
+  如果只是为了验证字符串中是否包含某个字符，使用String#contains方法就行，而注意该方法的参数，  不是正则表达式
+10.java中比较？
+如果你重写了equal方法，记得相对应地修改hashcode方法，否则将会违反这两个方法的对等关系，如果两个对象是相等（equal）的，那么两个对象调用hashCode必须产生相同的整数结果，即：equal为true，hashCode必须为true，equal为false，hashCode也必须为false（在集合中比较会先比较hashcode）
+如果要忽略大小写进行对比，可以用equalsIgnoreCase()方法
+11.Map基于value值排序？
+import java.util.*;
+public class MapUtil {
+    public static <K, V extends Comparable<? super V>> Map<K, V> 
+        sortByValue(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new LinkedList<Map.Entry<K, V>>(map.entrySet());
+        Collections.sort( list, new Comparator<Map.Entry<K, V>>() {
+            public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+                return (o1.getValue()).compareTo( o2.getValue() );
+            }
+        });
+        Map<K, V> result = new LinkedHashMap<K, V>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
+    }
+}
+12.HashMap和Hashtable的区别？
+Hashtable是同步的，加了synchronized锁，而HashMap不是。没有加synchronized锁的对象，性能通常比加了synchronized锁的对象要更好一些，因此，如果是非多线程程序，不需要考虑锁、同步等问题，那么使用HashMap更好。
+Hashtable不允许有空的键或值。HashMap允许空键和空值。
+HashMap有一个子类LinkedHashMap,对这个类对象进行迭代时，它的顺序是有序的（按插入顺序排序）如有需要，你也能轻易的从LinkedHashMap转化成HashMap。Hashtable就没那么简单了，
+总之，如果你无需关心同步（synchronized）问题，我会建议用HashMap。反之，你可以考虑使用ConcurrentHashMap---通过分段锁来使Map线程安全，但是效率有相对与Hashtable高.内部以大小为16的数组来分段，所以效率大概提高16倍。
+13.如何快捷地将两个数组组合到一起？
+   将a，b组合为c（非泛型）
+   public Foo[] concat(Foo[] a, Foo[] b) {
+   int aLen = a.length;
+   int bLen = b.length;
+   Foo[] c= new Foo[aLen+bLen];
+   System.arraycopy(a, 0, c, 0, aLen);
+   System.arraycopy(b, 0, c, aLen, bLen);
+   return c;
+   }
+   （泛型）
+    public <T> T[] concatenate (T[] a, T[] b) {
+    int aLen = a.length;
+    int bLen = b.length;
+    @SuppressWarnings("unchecked")
+    T[] c = (T[]) Array.newInstance(a.getClass().getComponentType(), aLen+bLen);
+    System.arraycopy(a, 0, c, 0, aLen);
+    System.arraycopy(b, 0, c, aLen, bLen);
+
+    return c;
+    }
+14.java是否支持默认的参数？
+不支持，但是可以通过多种方法达到目的
+构造函数的重载；
+null的传递：b = b != null ? b : 0;    如果传入为null则设为0
+使用Map作为方法中的参数，并增加判断语句来确认参数和设置默认值
+15.java产生制定范围的随机数？
+Math.random()   产生一个 大于等于 0 且 小于 1 的双精度伪随机数，乘以范围来目的
+java.util.Random(int min,int max)   生成大于min小于max的随机数
+16.什么是javabean?
+JavaBean 只是一个标准
+    所有的属性是私有的（通过getters/setters处理属性）
+    一个公有的无参数的构造器
+    实现了序列化（Serializable）
+就这些，它只是一个规范。但是很多的类库都是依赖于这些预定。
+
+序列化的对象可以被写入流，文件，对象数据库等。
+另外，一个JavaBean类和一个普通的类没有语法区别，如果遵循上面的标准的话，一个类可以认为成JavaBean类。
+之所以需要JavaBean，是因为这样预定义了一种类的格式，一些库能依据这个约定的格式，来做一些自动化处理。举个例子，如果一个类库需要通过流来处理你传递的任何对象，它知道它可以正常处理，因为这个对象是可序列化的。（假设这个类库要求你的对象是JavaBeans）
+17.wait()和sleep()的区别？
+wait方法继承与Object类，而sleep属于线程的方法。
+线程 在wait 后，可以被另一个拥有相同 synchronized 对象的线程，通过调用 notify 唤醒，而 sleep 不行，但可以interrup。
+wait 和 notify 能正常执行的条件是（否则会抛异常）：多个线程的代码，都包在synchronized块中，并且 synchronized 锁的对象需要是同一个。
+sleep不会释放锁，而wait会释放锁
+18.构造函数中是否可以调用另一个构造函数？
+可以，但是只能调用到一个构造函数，它必须是构造函数体中的第一个语句。
+大概是因为构造函数必须返回有且只有一个对象，所以只能有一个构造函数，super或者this或者别的。
+19.finally代码块？
+finally代码块总是会被执行，当在try或者catch中return时，会先将返回值压入栈中，然后执行finally代码块，如果finally代码块中也return，会将该值压入栈中并最终返回。
+20.如何将String转换为enum？
+使用Enum.valueOf()方法，Blah.valueOf("A") 将会得到 Blah.A。
+21.switch判断的类型要求？
+基本类型为int及向下转型，底层会自动装转型为int，再进行判断
+String   在JDK1.7实现
+enum  枚举类型
+22.比较java枚举成员使用==还是equal？
+在源码中，equal方法是直接继承于Object，并没有重写，即equal方法与==相等
+在枚举比较中推荐使用==。
+23.serialVersionUID的作用？
+是 Java 为每个序列化类产生的版本标识，可用来保证在反序列时，发送方发送的和接受方接收的是可兼容的对象。如果接收方接收的类的 serialVersionUID 与发送方发送的 serialVersionUID 不一致，进行反序列时会抛出 InvalidClassException。
+建议你在每一个序列化的类中显式指定 serialVersionUID 的值，因为不同的 jdk 编译很可能会生成不同的 serialVersionUID 默认值，进而导致在反序列化时抛出 InvalidClassExceptions 异常。所以，为了保证在不同的 jdk 编译实现中，其 serialVersionUID 的值也一致，可序列化的类必须显式指定 serialVersionUID 的值。另外，serialVersionUID 的修饰符最好是 private，因为 serialVersionUID 不能被继承，所以建议使用 private 修饰 serialVersionUID。
+24.froeach是如何工作的？
+对于数组，foreach底层为for循环
+对于集合，foreach底层为迭代器，注意，foreach中不能使用.remove方法，需要使用迭代器，然后在迭代器迭代中删除。
+25.java内部类和静态内部类？
+静态内部类使用外部类名访问    外部类.静态内部类
+不同内部类必须依赖于外部类对象，先实例化外部类对象，才能创建不同内部类对象
+26.如何创建泛型数组？
+数组不能通过泛型创建。编译期会报错。
+
+编程技巧
+1.如何使用一行代码初始化一个ArrayList?
+List<String> places = Arrays.asList("Buenos Aires", "Córdoba", "La Plata");
+List<String> places = Collections.singletonList("Buenos Aires");
+但是这两种方法得到的都是一个定长的List，如果add操作会抛出异常。如果需要一个不定长的list，如下
+ArrayList<String> places = new ArrayList<>(Arrays.asList("Buenos Aires", "Córdoba", "La Plata"));
+但是直接建立一个list，并且一个一个add就是最好的方法，因为不会创建新的List。。
+2.怎样初始化一个静态的map？
+    public class Test{
+	private static final Map<Integer, String> myMap;
+	static{
+		Map<Integer, String> aMap = ...;
+		aMap.put(1,"one");
+		aMap.put(2,"two");
+		myMap = Collections.unmodifiableMap(aMap);
+	}
+      }
+Collections的unmodifiable方法使得map固定长度。
+3.三个布尔变量，当其中有两个或者两个以上为true时才返回true？
+return a ? (b || c) : (b && c);
+return (a==b) ? a : c;
+return a ^ b ? c : a；
+return a ? (b || c) : (b && c);
+4.输出数组最简单的方式？
+使用 Arrays.toString(arr) 或 Arrays.deepToString(arr)来打印（输出）数组。
+Arrays.deepToString更适合打印多维数组。
+5.为什么以下用随机生成的文字会得出 “hello world”?
+在JAVA 里面，随机类的实现不是真正的随机,是伪随机. 就是说如果随机类的种子是一样的话，他们会生成同一组的数字。new Random(-229985452).nextInt(27)    首6个生成的数字一定是:8,5,12,12,15,0
+`在码制中代表96     详见   工程StackOberFlow.stc.Test.Random_Hello.java
+6.为什么在java中存放密码更倾向于char[]而不是String?
+String是不可变的。虽然String加载密码之后可以把这个变量扔掉，但是字符串并不会马上被GC回收，一但进程在GC执行到这个字符串之前被dump，dump出的的转储中就会含有这个明文的字符串。那如果我去“修改”这个字符串，比如把它赋一个新值，那么是不是就没有这个问题了？答案是否定的，因为String本身是不可修改的，任何基于String的修改函数都是返回一个新的字符串，原有的还会在内存里。
+然而对于数组，你可以在抛弃它之前直接修改掉它里面的内容或者置为乱码，密码就不会存在了。但是如果你什么也不做直接交给gc的话，也会存在上面一样的问题。
+所以，这是一个安全性的问题--但是，即使使用char[]也仅仅是降低了攻击者攻击的机会，而且仅仅对这种特定的攻击有效。
+7.Java 源码里的设计模式
+https://github.com/giantray/stackoverflow-java-top-qa/blob/master/contents/examples-of-gof-design-patterns-in-javas-core-libraries.md
+8.如何创建单例？
+public final class Foo implements Serializable {
+    private static final long serialVersionUID = 1L;
+    // 使用内部静态 class 实现懒加载
+    private static class FooLoader {
+        // 保证在多线程环境下无差错运行
+        private static final Foo INSTANCE = new Foo();
+    }
+
+     private Foo() {
+        if (INSTANCE != null) {
+            throw new IllegalStateException("Already instantiated");
+        }
+    }
+    public static Foo getInstance() {
+        return FooLoader.INSTANCE;
+    }
+    @SuppressWarnings("unused")
+    private Foo readResolve() {
+        return FooLoader.INSTANCE;    //防止序列化时破坏单例模式
+    }
+}
+枚举类型单元素也是一个很好的单例模式，继承于java.lang.Enum，而 Enum 实现了 Serializable 接口
+9.Runbale  VS   Thread
+implements Runnable更好。
+一般来说，我建议使用一些类似的东西，Runnable而不是Thread因为它允许你保持你的工作只是松散地与你选择并发。例如，如果您使用a Runnable并且稍后决定，这实际上不需要它是自己的Thread，您可以调用threadA.run（）。
+10.如何处理java.lang.outOfMemoryError PermGen space errot?
+在jvm的命令行添加参数
+-XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled
+网址：https://github.com/giantray/stackoverflow-java-top-qa/blob/master/contents/dealing-with-java-lang-outofmemoryerror-permgen-space-error.md
+11.如何在整数左填充0
+String.format("%05d", yournumber);
+12.在调用 instanceof 前需要进行null检查吗？
+不需要，如果为null会返回flase
+13.如何从文件中读取字符串？
+读取所有文本
+static String readFile(String path, Charset encoding) 
+  throws IOException 
+{
+  byte[] encoded = Files.readAllBytes(Paths.get(path));
+  return new String(encoded, encoding);
+}
+一行一行读入
+List<String> lines = Files.readAllLines(Paths.get(path), encoding);
+一次读取所有文本占用内存较多。注意字符编码格式

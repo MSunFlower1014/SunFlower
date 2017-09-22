@@ -1,0 +1,196 @@
+列名    数据类型    默认值   约束
+create table customer(
+   id number(7) primary key,
+   name char(25) not null,
+   phone varchar2(20) unique
+)
+
+rep_id number(7) references emp(id)
+
+insert into customer
+values(10,'Jack','110')
+
+insert into customer
+values(11,'Smith','120')
+
+删除表
+drop table customer
+
+改变约束名
+create table customer(
+   id number(7) constraint customer_id_pk primary key,
+   name char(25) constraint customer_name_nn not null,
+   phone varchar2(20) constraint customer_phone_uq unique
+)
+
+insert into customer
+values(10,'Tom','1110')
+
+主键约束可以写在列后，也可以写在所有列之后。列级约束和表级约束
+primary key   描述一列为主键，非空且唯一    not null 非空    unique  唯一
+联合主键只能在表级中声明，无法再列级约束声明
+
+drop table customer;
+
+create table customer(
+   id number(7) ,
+   name char(25) ,
+   phone varchar2(20),
+   emp_id number(7),
+   primary key(id),
+   foreign key(emp_id) references s_emp(id),
+   unique(name)
+)
+
+联合主键
+create table s_t_table(
+   s_id number(7),
+   t_id number(7),
+  primary key(s_id,t_id)
+)
+
+检查型约束，只能是指定的几个值
+create table student(
+   gender varchar(5) check(gender in('男'，'女'))
+)
+
+insert into student
+values('男')
+
+表可以通过子查询创建（复制一张表）
+通过子查询创建表，只会保留非空约束。即主键失效了
+create table emp1(
+    id number(7),
+   last_name varchar2(25),
+   salary number(7)
+)
+
+create table emp1
+as
+select id,last_name,salary
+from s_emp;
+
+只复制结构，不要数据
+create table emp2
+as
+select *
+from s_emp
+where 1=0;
+
+设置默认值  default
+create table student2(
+   name varchar2(10) default '李狗蛋',
+   age number(7) default 0
+)
+
+insert into student2(age)
+values(20);
+
+select *
+from dictionary
+where table_name like 'USER%';
+
+select *
+from dictionary
+where table_name like 'USER_TABLE%';
+
+select table_name
+from user_tables;
+
+insert into emp2(id,last_name,salary)
+select id,last_name,salary
+from emp1
+where salary >1500;
+
+添加新的列
+alter table emp1
+add(
+    manager_id number(7)
+)
+
+删除表中列
+alter table emp1
+drop column manager_id
+
+alter table emp1
+modify(
+    salary varchar2(25) not null
+)
+
+通过字典，系统表查询用户表的信息
+select table_name,column_name,date_type,data_length
+from user_tab_columns
+order by table_name;
+
+用户创建的表
+select table_name,num_rows
+from user_tables;
+
+级联删除，当删除外键列时删除，会删除外键列所关联的信息
+create table my_order(
+	id number(7) primary key,
+	name varchar2(20) not null,
+	emp_id number(7)references my_emp(id)
+		on delete cascade
+  );
+
+清空表   清空数据
+delete from 
+1 DML
+2 删除数据，但是不清空表空间
+移到回收站
+
+truncate
+1 DDL
+2 删除数据，清空表空间
+清空回收站
+
+comment 添加表的描述信息
+comment on table s_emp
+is '测试用表，表示销售顾问';
+
+序列
+create sequence my_seq
+increment by 2
+start with 10;
+
+获取序列的下一个值
+select seq1.nextval
+from dual;
+
+视图   需要权限，通过grant create any view to briup(管理员权限)
+create view v_emp
+as
+select id,last_name,salary
+from s_emp
+
+简单视图   直接通过单表条件查询，允许直接在视图上进行增，删，修改数据。会关联到原表中，更改原表中数据也会关联到视图中。
+
+update v_emp
+set last_name = 'hello'
+where id=99
+
+复杂视图   通过group by 或者 连接查询，  在视图上只能进行查询。但原表中的更改会影响视图
+
+视图没有 alter命令,修改视图使用create or replace view
+create or replace view  v_emp
+as
+select e.last_name,e.id,d.name,e.salary
+from s_emp e,s_dept d
+where e.dept_id = d.id
+
+with read only    只允许读
+with check option 创建视图时，所用到的列不允许修改
+drop view v_emp;
+
+create index 名字
+on 表名（列名，XX,XX）
+
+行列互换
+select  name as “姓名”,
+max(case subject when '语文' then score else 0 end) as “语文” ,
+max(case subject when '英语' then score else 0 end ) as “英语” ,
+max(case subject when '数学' then score else 0 end )  as “数学”
+from  student
+group by name
+order by name

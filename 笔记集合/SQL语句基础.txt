@@ -1,0 +1,342 @@
+﻿数据查询语言   Date Query Language,DQL.负责数据查询而不会对数据本身进行修改的语句，核心指令是select，辅助指令from,where,group by和order by.
+数据定义语言   Date Definition Language,DDL.负责数据结构定义与数据库定义的语言，由create,alter,drop三个语法组成.
+数据操纵语言   Date Manipulation Language,DML .负责对数据库对象运行数据访问工作的指令集，以insert,update,delete三种指令为核心.
+数据控制语言   Data Control Language,DCL.可对数据访问权进行控制的指令，可以控制特定用户账户对数据表，查看表，预存程序，用户自定义函数等数据库对象的控制权，由grant,revoke两个指令主城.
+
+改为英文环境
+alter session set nls_language='american';
+
+select last_name,salary,title
+from s_emp;
+
+col last_name for a20
+col title for a20
+
+select 10+10*20
+from dual;
+
+as 起别名,可省略
+
+select last_name,title,salary*12
+from s_emp;
+
+日期和字符型数据左对齐，数字型数据右对齐。
+显示默认大写。
+
+select last_name,title,salary*12 as total
+from s_emp;
+
+select last_name,title,salary*12 as "Total"
+from s_emp;
+
+||拼接字符
+单引号修饰字符串
+
+select first_name||' '||last_name name
+from s_emp;
+
+select last_name,salary*(1+commission_pct/100) total
+from s_emp;
+
+nvl设置列默认值    字符串用单引号修饰
+select last_name,salary*(1+nvl(commission_pct,0)/100) total
+from s_emp;
+
+select name
+from s_dept;
+
+distinct 去除重复默认对列的组合去重
+select distinct name
+from s_dept;
+
+默认对列的组合去重,     无法对单个列去重，因为违反第一范式
+select distinct title,dept_id
+from s_emp;
+
+改变输出的列的名字        |表示换行
+col last_name heading 'Employee|name' format a15
+
+col salary for 999,999.99
+
+默认为升序
+select last_name,dept_id,salary
+from s_emp
+order by last_name;
+
+asc 升序    desc  降序
+select last_name,dept_id,salary
+from s_emp
+order by last_name desc;
+
+先按salary升序，相同时按dept_id降序
+select last_name,dept_id,salary
+from s_emp
+order by salary,dept_id desc;
+
+表达式和别名和列名都可以用来排序
+select last_name name,salary*12
+from s_emp
+order by name desc;
+
+select last_name name,salary*12
+from s_emp
+order by salary*12 desc;
+
+可以由select的子项的标号直接排序，由1开始 
+select last_name name,salary*12
+from s_emp
+order by 2 desc;
+
+可以直接用表中的列名直接排序，不需是select的子项
+
+null值当最大值使用
+select last_name,commission_pct
+from s_emp
+order by 2;
+
+设定数据条件
+select last_name,dept_id,salary
+from s_emp
+where dept_id=42;
+
+select last_name,dept_id,salary
+from s_emp
+where last_name='Magee';
+
+between and 是闭区间的
+select last_name,salary
+from s_emp
+where salary between 1500 and 2000;
+
+select last_name,title
+from s_emp
+where dept_id in (39,42,45);
+
+select last_name,title
+from s_emp
+where last_name like 'M%';
+
+escape 临时指定转义字符
+select last_name,title
+from s_emp
+where last_name like '/_M%' escape '/';
+
+null不能使用=来判断  需要使用is null 
+select last_name,title
+from s_emp
+where commission_pct is null;
+
+and的优先级比or高      比较运算符优先级最高，如between，in
+select last_name,salary,dept_id
+from s_emp
+where salary between 1000 and 2000
+and (dept_id=41 or dept_id=43);
+
+concat  连接符    lower 小写    upper  大写
+select lower(last_name) ll,upper(title) ut,concat(first_name,last_name) name
+from s_emp;
+
+initcap   首字符大写
+dual是一个虚拟表，是“空表”的意思
+select initcap('Hello world')
+from dual;
+
+substr   截取字符串
+length 下标从1开始，长度
+select substr(last_name,length(last_name)-1,2)
+from s_emp;
+
+select last_name,title
+from s_emp
+where upper(last_name) like '%ME%';
+
+select sysdate
+from dual;
+
+时间更加精确
+select systimestamp
+from dual;
+
+添加行号
+select rownum,last_name
+from s_emp;
+
+相当于存放地址（默认的排放顺序）
+select rowid,last_name
+from s_emp;
+
+小于，小于等于没有限制
+select last_name,title
+from s_emp
+where rownum < 20;
+
+等于，大于等于 只对1有效。即只能=1或>=1
+select last_name,title
+from s_emp
+where rownum =1;
+
+大于   无法查询
+
+需要在英文环境下才能使用SEP，不然需要  一月  这样的时间
+select MONTHS_BETWEEN('01-SEP-95','01-JAN95')
+from dual;
+
+select to_char(sysdate,'dd-mon-yy HH:MI:SS DAY D DD DDD DY ddsp ddspth YEAR MONTH')
+from dual;
+04 -9月 -17 02:25:26 星期一 2 04 247 星期一 four fourth TWENTY SEVENTEEN 9月
+
+select sysdate-start_date
+from s_emp;
+
+select to_char(salary,'L999,999.99')
+from s_emp;
+
+select to_number('1789')
+from dual;
+
+select last_name,dept_id
+from s_emp;
+
+多表查询
+内连接，当有null时不查询    
+查询员工信息和部门名称
+select e.last_name,e.title,d.name dept_name
+from s_emp e,s_dept d
+where e.dept_id=d.id;
+
+select e.last_name,e.title,d.name dept_name,r.name
+from s_emp e,s_dept d,s_region r
+where e.dept_id=d.id and d.region_id=r.id;
+
+插入
+insert into s_emp(id,last_name)
+values(100,'李狗蛋');
+
+左外连接，把左表中的没有关联关系的行业查询出来
+select e.last_name,d.name
+from s_emp e
+left outer join s_dept d
+on e.dept_id =d.id;
+
+insert into s_dept(id,name)
+values(99,'miss部');
+
+右外链接，把右表中没有关联关系的行也查询出来
+select e.last_name,d.name
+from s_emp e
+right outer join s_dept d
+on e.dept_id =d.id;
+
+全外链接
+select e.last_name,d.name
+from s_emp e
+full outer join s_dept d
+on e.dept_id =d.id;
+
+自连接
+查询每个员工信息，及该员工的经理信息
+select e.id,e.last_name,m.last_name manager_name
+from s_emp e
+left outer join s_emp m
+on e.manager_id=m.id;
+
+select e.id,e.last_name,m.last_name manager_name
+from s_emp e, s_emp m
+where e.manager_id=m.id;
+
+union  并集        minus  补集           intersect   交集     union all   并集，但交集取两次
+select e.last_name,e.title,d.name dept_name
+from s_emp e,s_dept d
+where e.dept_id(+)=d.id
+union
+select e.last_name,e.title,d.name dept_name
+from s_emp e,s_dept d
+where e.dept_id=d.id(+);
+
+select rownum,last_name
+from s_emp
+where rownum <=20
+minus
+select rownum,last_name
+from s_emp
+where rownum <=10;
+
+select avg(salary),max(salary),min(salary),sum(salary)
+from s_emp;
+
+select dept_id,avg(salary)
+from s_emp
+group by dept_id;
+
+select dept_id,avg(salary)
+from s_emp
+group by dept_id
+having dept_id >40;
+
+select last_name,salary
+from s_emp
+where dept_id = (
+    select dept_id
+    from s_emp
+   where upper(last_name) ='SMITH'
+)；
+
+select rownum r,last_name
+from s_emp
+where rownum<=20;
+
+select r,last_name
+from(
+            select rownum r,last_name
+           from s_emp
+            where rownum<=20
+)
+where r between 11 and 20;
+
+select avg(salary)
+from s_emp
+
+select last_name,salary
+from s_emp
+where salary  > (
+select avg(salary)
+from s_emp
+);
+
+
+select avg(salary)
+from s_emp
+
+
+select dept_id
+from s_emp
+group by dept_id
+having avg(salary) >(
+select avg(salary)
+from s_emp
+)
+
+
+查询部门平均工资高于所有人平均工资的部门的员工信息
+select last_name,salary
+from s_emp
+where dept_id in(
+select dept_id
+from s_emp
+group by dept_id
+having avg(salary) >(
+select avg(salary)
+from s_emp
+)
+)
+
+替换变量
+select id,last_name,salary
+from s_emp
+where dept_id = &var2;
+
+select id,last_name,salary
+from s_emp
+where last_name='&var1'
+
+define var2=33
