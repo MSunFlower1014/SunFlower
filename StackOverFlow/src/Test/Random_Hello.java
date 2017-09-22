@@ -3,6 +3,10 @@ package Test;
 import java.util.Random;
 
 public class Random_Hello {
+	/*
+	*使用gnew Random(-229985452).nextInt(27)    首6个生成的数字一定是:8,5,12,12,15,0
+	*即随机数生成是按照一定的规定生成的
+	**/
 	public static String randomString(int i)
 	{
 	   Random ran = new Random(i);
