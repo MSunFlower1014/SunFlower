@@ -1,0 +1,5 @@
+PLSQL中 f5 打开解释计划窗口
+
+select dataid from (select dataid,rownum rn from (select dataid from TF_MM_GLOBAL_BATCHDATA t1 where lockid =0   order by dataid ) t2) where rn <10000
+
+select count(dataid) from (select dataid,rownum rn from (select dataid from TF_MM_GLOBAL_BATCHDATA t1 where lockid is null  order by dataid ) t2) where rn <10000

@@ -1,0 +1,25 @@
+linux下安装
+
+$ wget http://download.redis.io/releases/redis-2.8.3.tar.gz
+
+$ tar xzf redis-2.8.3.tar.gz
+
+$ cd redis-2.8.3
+
+$ make      编译
+
+cp redis-2.8.3/src/redis-server redisCmd/
+cp redis-2.8.3/src/redis-cli redisCmd/
+
+
+连接redis集群
+连接一个单独的Redis   ：cd 到一个Redis 目录下 使用命令 ./redis-cli -h 10.9.236.71 -p 8350
+./redis-cli -h 10.11.153.193 -p 7000 -c -a ChWestl10^3qx_
+:7000
+连接集群则在其后加入一个 -c 即 ./redis-cli -h 192.168.204.131 -p 6379 -c
+
+密码登录   后加   -a password
+
+olF8Jj2B71Kxg70EJxPvsFv1PqSw_getSerialNumberByOpenId_I001
+
+

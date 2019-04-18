@@ -1,0 +1,20 @@
+docker run ubuntu:15.10 /bin/echo "Hello world"、
+Docker 以 ubuntu15.10 镜像创建一个新容器，然后在容器里执行 bin/echo "Hello world"，然后输出结果。
+
+docker run -i -t ubuntu:15.10 /bin/bash
+-t:在新容器内指定一个伪终端或终端。
+-i:允许你对容器内的标准输入 (STDIN) 进行交互。
+运行exit命令或者使用CTRL+D来退出容器。
+
+docker run -d ubuntu:15.10 /bin/sh -c "while true; do echo hello world; sleep 1; done"       
+创建一个以进程方式运行的容器
+
+docker ps
+
+docker stop docker_id
+
+docker run --name mayantaoTomcat -p 8081:8081 -v $PWD/weixin:/usr/local/tomcat/webapps/ -d tomcat  
+
+docker run -p 6379:6379 -d redis:3.2 redis-server --appendonly yes
+
+docker exec -it 43f7a65ec7f8 redis-cli

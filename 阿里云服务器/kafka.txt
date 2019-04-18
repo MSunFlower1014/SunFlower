@@ -1,0 +1,61 @@
+下载
+ wget http://mirrors.hust.edu.cn/apache/kafka/2.0.0/kafka_2.11-2.0.0.tgz
+
+解压
+ tar -xzf kafka_2.11-2.0.0.tgz
+
+启动zk
+sh zkServer.sh start
+
+查看状态
+sh zkServer.sh status
+
+kafka启动时报错：java.net.UnknownHostException: Name or service not known
+ hostname - 用以显示或设置系统的主机名称
+ vi /etc/hosts
+ 添加 10.112.179.12 主机名
+10.112.179.12 iZwz9arhdmt3g53ucv5m6qZ
+
+启动
+sh kafka-server-start.sh ../config/server.properties &
+
+创建主题
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+查看已创建的topic信息
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+发送消息
+bin/kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic test
+
+消费消息
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ech-log-topic --from-beginning
+
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic ech-log-topic
+
+集群
+cp config/server.properties config/server-1.properties
+cp config/server.properties config/server-2.properties
+
+sh kafka-server-start.sh ../config/server.properties &
+sh kafka-server-start.sh ../config/server-1.properties &
+sh kafka-server-start.sh ../config/server-2.properties &
+
+新建topic
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic
+
+查看topic集群信息
+bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic ech-log-topic
+
+bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic test
+
+bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties
+
+远程连接需要改service.properties
+listeners=PLAINTEXT://172.16.23.163:9092                   阿里云内网ip
+advertised.listeners=PLAINTEXT://120.79.253.180:9092		阿里云外网ip
+
+producer
+生产者的send()方法是异步的，send()方法添加消息到缓冲区等待发送，并立即返回，这样可以并行发送多条消息而不阻塞去等待每一条消息的响应。为了减少请求的数量，生产者将单个的消息聚集在一起批量发送来提高效率。
+acks是判断消息是否成功发送的条件，将acks指定为"all"将会阻塞消息，当所有的副本都返回后才表明该消息发送成功，这种设置性能最低，但是是最可靠的。
+

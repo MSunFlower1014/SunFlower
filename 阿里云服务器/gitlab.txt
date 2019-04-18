@@ -1,0 +1,21 @@
+下载
+wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu/pool/xenial/main/g/gitlab-ce/gitlab-ce_10.7.2-ce.0_amd64.deb
+
+安装
+dpkg -i gitlab-ce_10.7.2-ce.0_amd64.deb
+
+ #使配置生效
+gitlab-ctl reconfigure
+#重新启动GitLab 
+gitlab-ctl restart
+
+gitlab-ctl start    # 启动所有 gitlab 组件；
+gitlab-ctl stop        # 停止所有 gitlab 组件；
+gitlab-ctl restart        # 重启所有 gitlab 组件；
+gitlab-ctl status        # 查看服务状态；
+vim /etc/gitlab/gitlab.rb        # 修改gitlab配置文件；
+gitlab-ctl reconfigure        # 重新编译gitlab的配置；
+gitlab-rake gitlab:check SANITIZE=true --trace    # 检查gitlab；
+gitlab-ctl tail        # 查看日志；
+gitlab-ctl tail nginx/gitlab_access.log
+

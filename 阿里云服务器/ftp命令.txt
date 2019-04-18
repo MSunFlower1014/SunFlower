@@ -1,0 +1,24 @@
+搭建
+apt-get install -y vsftpd
+
+登录
+ftp host
+
+type 命令：查看当前的传输方式。	
+ascii 命令：设定传输方式为ASCII码方式。
+binary 命令：设定传输方式为二进制方式。
+
+get 命令：下载指定文件
+get filename [newname]
+
+mget 命令：下载多个文件。
+mget命令的格式：mget filename [filename ……]。
+mget命令支持通配符“*”和“?”，比如：mget *.mp3 表示下载FTP服务器当前目录下的所有扩展名为mp3的文件。
+
+put 命令：上传指定文件
+put filename [newname]
+
+quit 命令：结束与服务器的FTP会话并退出FTP环境。
+
+cdl cd本机路径
+cd  cdftp服务器路径

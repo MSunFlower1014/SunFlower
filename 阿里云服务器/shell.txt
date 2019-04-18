@@ -1,0 +1,61 @@
+#!/bin/bash
+echo "Hello World !"
+
+#! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell。
+echo 命令用于向窗口输出文本。
+
+定义变量时，变量名不加美元符号
+命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。
+中间不能有空格，可以使用下划线（_）。
+不能使用标点符号。
+不能使用bash里的关键字（可用help命令查看保留关键字）。
+使用一个定义过的变量，只要在变量名前面加美元符号即可
+
+readonly 命令可以将变量定义为只读变量，只读变量的值不能被改变。
+myUrl="http://www.google.com"
+readonly myUrl
+
+export可新增，修改或删除环境变量，供后续执行的程序使用。
+export JAVA_HOME=/home/ecs/java/jdk1.7.0_80
+
+我们可以在执行 Shell 脚本时，向脚本传递参数，脚本内获取参数的格式为：$n。n 代表一个数字，1 为执行脚本的第一个参数，2 为执行脚本的第二个参数，以此类推……
+$ ./test.sh 1 2 3    
+
+-n  字符串是否存在
+
+流程控制
+if [ -n "$PIDS" ]; then
+    echo "ERROR: The $SERVER_NAME already started!"
+    echo "PID: $PIDS"
+    exit 1
+fi
+
+command > file	               将输出重定向到 file。
+command < file	               将输入重定向到 file。
+command >> file	将输出以追加的方式重定向到 file。
+
+一般情况下，每个 Unix/Linux 命令运行时都会打开三个文件：
+标准输入文件(stdin)：stdin的文件描述符为0，Unix程序默认从stdin读取数据。
+标准输出文件(stdout)：stdout 的文件描述符为1，Unix程序默认向stdout输出数据。
+标准错误文件(stderr)：stderr的文件描述符为2，Unix程序会向stderr流中写入错误信息。
+默认情况下，command > file 将 stdout 重定向到 file，command < file 将stdin 重定向到 file。
+
+如果希望将 stdout 和 stderr 合并后重定向到 file，可以这样写：
+$ command > file 2>&1
+
+如果希望执行某个命令，但又不希望在屏幕上显示输出结果，那么可以将输出重定向到 /dev/null：
+$ command > /dev/null
+
+Shell 也可以包含外部脚本
+. filename   # 注意点号(.)和文件名中间有一空格
+或
+source filename
+
+获取进程号杀死		grep -v 用来去除grep这个进程     		awk获取第二个参数值
+PROCESS=`ps -ef|grep apache-tomcat-5.5.35 | grep -v 'grep' |awk '{print $2}'`
+for i in $PROCESS
+do
+     echo $i "      port"
+     echo "kill the tomcat-5.5.35 process"
+     kill -9 $i
+done

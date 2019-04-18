@@ -1,0 +1,29 @@
+下载
+wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/9.3.25.v20180904/jetty-distribution-9.3.25.v20180904.tar.gz
+
+解压
+tar -xvf jetty-distribution-9.3.25.v20180904.tar.gz
+
+目录	作用
+bin/		用于存放jetty的启动脚本，目前仅提供liunx/unix下的脚本
+demo-base/	存放一个用于演示的工程
+etc/		jetty存放xml配置文件的目录
+lib/		存放jetty运行时依赖的jar包，包括jetty各个模块的jar包，可以说这里就是真正的jetty
+logs/		存放请求日志的目录
+modules/	模块定义目录,存放jetty模块定义文件(*.mod)
+resources/	存放类路径下的资源文件，比如log4j.xml，存放在这个目录下的文件在jetty启动时会被加入到classpath
+start.ini		存放命令行启动jetty时需要的一些列参数
+start.jar		用于启动jetty的jar文件
+webapps	运行于Jetty默认配置下的Web应用部署目录(一般实际部署应用会重新创建一个另外一个目录作为Jetty_base路径)
+
+修改端口
+vi start.ini
+jetty.http.port   配置项
+
+启动
+sh bin/jetty.sh start
+查看状态
+sh  bin/jetty.sh status
+重启
+sh bin/jetty.sh restart
+

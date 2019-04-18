@@ -1,0 +1,225 @@
+查看目录文件
+ls-rtl
+解压文件
+tar -xvf
+
+修改权限
+chmod -R 777 *
+
+主机ip    	  120.79.253.180
+
+df    -h                     查看整台服务器的硬盘使用情况
+du   -sh    *             查看每个文件夹的大小
+
+查看端口    
+netstat -ntpl
+
+查看网页
+curl url
+
+wget
+通过url下载文件
+
+关闭防火墙
+ufw disable
+
+开启防火墙
+ufw enable
+
+建立快捷方式
+ln -s /usr/local/nginx/sbin /mayantao//nginx
+
+diff命令用于比较文件的差异。
+diff以逐行的方式，比较文本文件的异同处。如果指定要比较目录，则diff会比较目录中相同文件名的文件，但不会比较其中子目录。
+
+
+rm命令用于删除一个文件或者目录。
+参数：
+-i 删除前逐一询问确认。
+-f 即使原档案属性设为唯读，亦直接删除，无需逐一确认。
+-r 将目录及以下之档案亦逐一删除。
+
+cp命令主要用于复制文件或目录。
+参数说明：
+-a：此选项通常在复制目录时使用，它保留链接、文件属性，并复制目录下的所有内容。其作用等于dpR参数组合。
+-d：复制时保留链接。这里所说的链接相当于Windows系统中的快捷方式。
+-f：覆盖已经存在的目标文件而不给出提示。
+-i：与-f选项相反，在覆盖目标文件之前给出提示，要求用户确认是否覆盖，回答"y"时目标文件将被覆盖。
+-p：除复制文件的内容外，还把修改时间和访问权限也复制到新文件中。
+-r：若给出的源文件是一个目录文件，此时将复制该目录下所有的子目录和文件。
+-l：不复制文件，只是生成链接文件。
+
+ps [选项]
+参数说明：
+-e   显示所有进程。
+-f    全格式。
+
+tail 命令可用于查看文件的内容。
+参数：
+-f 更新文件最新内容
+-q 不显示处理信息
+-v 显示详细的处理信息
+-c<数目> 显示的字节数
+-n<行数> 显示行数
+--pid=PID 与-f合用,表示在进程ID,PID死掉之后结束.
+-q, --quiet, --silent 从不输出给出文件名的首部
+-s, --sleep-interval=S 与-f合用,表示在每次反复的间隔休眠S秒
+
+添加用户组
+groupadd groupname
+添加用户
+useradd username -m -s /sbin/nologin -d /home/username -g groupname
+-s /sbin/nologin 设置不能登陆 -s /bin/false(老方法) 也行
+-d 设置用户主目录
+-g 用户组
+-m 创建用户目录
+更改用户登录权限
+恢复登陆使用
+usermod -s /bin/bash username
+禁用用户登录权限
+usermod -s /sbin/nologin username
+设置密码
+passwd username
+删除用户
+userdel username
+
+cat /etc/passwd
+查看所有用户名
+
+top命令
+查看系统的CPU、内存、运行时间、交换分区、执行的线程等信息
+第一行：当前时间    运行时间    登录用户数量    负载均衡平均值（分别为1分钟，5分钟，15分钟的值）
+第二行：所有启动的进程数     正在运行的进程数      挂起的进程数       停止的进程数        僵尸进程数
+第三行：用户空间占用CPU百分比     内核空间占用CPU百分比     用户空间内改变过优先级的进程占用CPU百分比   空闲CPU百分比
+                等待输入输出CPU时间百分比     CPU服务于硬件中断所耗费的时间总额    CPU服务软中断所耗费的时间总额   Steal Time
+第四行：物理内存总量        已使用的物理内存        空闲物理内存           内核缓存内存量
+
+查找含有某字符串的所有文件
+grep 正则  文件名
+
+ls
+-t 以文件修改时间排序
+-r, –reverse 依相反次序排列
+-l 除了文件名之外，还将文件的权限、所有者、文件大小等信息详细列出来
+
+新h5interface脚本：
+#!/bin/bash
+export JAVA_HOME=/home/ecs/java/jdk1.7.0_80
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+
+
+cd `dirname $0`
+BIN_DIR=`pwd`
+cd ..
+DEPLOY_DIR=`pwd`
+CONF_DIR=$DEPLOY_DIR/conf
+
+SERVER_NAME=`sed '/dubbo.application.name/!d;s/.*=//' conf/dubbo.properties | tr -d '\r'`
+SERVER_PROTOCOL=`sed '/dubbo.protocol.name/!d;s/.*=//' conf/dubbo.properties | tr -d '\r'`
+SERVER_PORT=`sed '/dubbo.protocol.port/!d;s/.*=//' conf/dubbo.properties | tr -d '\r'`
+LOGS_FILE=`sed '/dubbo.log4j.file/!d;s/.*=//' conf/dubbo.properties | tr -d '\r'`
+
+if [ -z "$SERVER_NAME" ]; then
+    SERVER_NAME=`hostname`
+fi
+
+PIDS=`ps -f | grep java | grep "$CONF_DIR" |awk '{print $2}'`
+if [ -n "$PIDS" ]; then
+    echo "ERROR: The $SERVER_NAME already started!"
+    echo "PID: $PIDS"
+    exit 1
+fi
+
+if [ -n "$SERVER_PORT" ]; then
+    SERVER_PORT_COUNT=`netstat -tln | grep $SERVER_PORT | wc -l`
+    if [ $SERVER_PORT_COUNT -gt 0 ]; then
+        echo "ERROR: The $SERVER_NAME port $SERVER_PORT already used!"
+        exit 1
+    fi
+fi
+
+LOGS_DIR=""
+if [ -n "$LOGS_FILE" ]; then
+    LOGS_DIR=`dirname $LOGS_FILE`
+else
+    LOGS_DIR=$DEPLOY_DIR/logs
+fi
+if [ ! -d $LOGS_DIR ]; then
+    mkdir $LOGS_DIR
+fi
+STDOUT_FILE=$LOGS_DIR/stdout.log
+
+LIB_DIR=$DEPLOY_DIR/lib
+LIB_JARS=`ls $LIB_DIR|grep .jar|awk '{print "'$LIB_DIR'/"$0}'|tr "\n" ":"`
+
+JAVA_OPTS=" -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dsun.zip.disableMemoryMapping=true "
+JAVA_DEBUG_OPTS=""
+if [ "$1" = "debug" ]; then
+    JAVA_DEBUG_OPTS=" -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n "
+fi
+JAVA_JMX_OPTS=""
+if [ "$1" = "jmx" ]; then
+    JAVA_JMX_OPTS=" -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false "
+fi
+JAVA_MEM_OPTS=""
+BITS=`java -version 2>&1 | grep -i 64-bit`
+if [ -n "$BITS" ]; then
+    JAVA_MEM_OPTS=" -server -Xmx2g -Xms2g -Xmn256m -XX:PermSize=128m -Xss256k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 "
+else
+    JAVA_MEM_OPTS=" -server -Xms1g -Xmx1g -XX:PermSize=128m -XX:SurvivorRatio=2 -XX:+UseParallelGC "
+fi
+
+echo -e "Starting the $SERVER_NAME ...\c"
+nohup /home/ecs/java/jdk1.7.0_80/bin/java $JAVA_OPTS $JAVA_MEM_OPTS $JAVA_DEBUG_OPTS $JAVA_JMX_OPTS -classpath $CONF_DIR:$LIB_DIR/* com.alibaba.dubbo.container.Main > $STDOUT_FILE 2>&1 &
+
+COUNT=0
+while [ $COUNT -lt 1 ]; do
+    echo -e ".\c"
+    sleep 1
+    if [ -n "$SERVER_PORT" ]; then
+        if [ "$SERVER_PROTOCOL" == "dubbo" ]; then
+            COUNT=`netstat -an | grep $SERVER_PORT | wc -l`
+#           COUNT=`echo status | nc -i 1 127.0.0.1 $SERVER_PORT | grep -c OK`
+        else
+            COUNT=`netstat -an | grep $SERVER_PORT | wc -l`
+        fi
+    else
+        COUNT=`ps -f | grep java | grep "$DEPLOY_DIR" | awk '{print $2}' | wc -l`
+    fi
+    if [ $COUNT -gt 0 ]; then
+        break
+    fi
+done
+
+echo "interface OK!"
+PIDS=`ps -f | grep java | grep "$DEPLOY_DIR" | awk '{print $2}'`
+echo "PID: $PIDS"
+echo "STDOUT: $STDOUT_FILE"
+You have mail in /var/spool/mail/root
+
+120.79.253.180/weixin/getTenMark
+120.79.253.180/weixin/insertMark?context=nginx日志不生效，重启后ok了
+
+
+/mayantao/script/weixinRestart.sh
+
+#!/bin/bash
+
+cd /mayantao/war/
+if test -e ./weixin.war
+then
+rm -rf /mayantao/tomcat/apache-tomcat-8.5.34/webapps/weixin
+rm /mayantao/tomcat/apache-tomcat-8.5.34/webapps/weixin.war
+echo "rm weixin.war"
+cp /mayantao/war/weixin.war /mayantao/tomcat/apache-tomcat-8.5.34/webapps/weixin.war
+
+sh /mayantao/tomcat/apache-tomcat-8.5.34/bin/shutdown.sh
+sh /mayantao/tomcat/apache-tomcat-8.5.34/bin/startup.sh
+echo "start is ok"
+
+else
+echo 'weixin.war is not '
+fi
+
+

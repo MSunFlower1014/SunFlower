@@ -1,0 +1,122 @@
+依赖
+apt-get -y install gcc
+apt-get -y install  zlib1g-dev
+apt-get -y install  zlib-devel
+apt-get -y install   openssl 
+apt-get -y install openssl  openssl-devel  
+apt-get -y install libpcre3-dev
+
+apt-cache search zlib
+apt-cache search pcre-devel   libpcre3-dev
+
+wget http://nginx.org/download/nginx-1.13.7.tar.gz
+
+ tar -xvf nginx-1.13.7.tar.gz
+
+make
+make install
+
+server {
+        listen       8089;
+        listen       8082;
+}
+
+重启 
+nginx -s reload
+测试配置文件是否正确
+nginx -t
+关闭
+nginx  -s  stop
+指定配置文件的启动方式
+nginx -c 配置文件路径
+正常关闭，先等待工作进程完成当前请求后，再停止
+nginx -s quit
+
+
+
+worker_processes  1;  
+#error_log  logs/error.log;  
+#error_log  logs/error.log  notice;  
+#error_log  logs/error.log  info;  
+#pid  logs/nginx.pid;  
+events {  
+    worker_connections  1024;  
+}  
+http {  
+    include       mime.types;  
+    default_type  application/octet-stream;  
+  
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '  
+    #                  '$status $body_bytes_sent "$http_referer" '  
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';  
+  
+    #access_log  logs/access.log  main;  
+  
+    sendfile        on;  
+    #tcp_nopush     on;  
+  
+    #keepalive_timeout  0;  
+    keepalive_timeout  65;  
+    #设定请求缓冲， start  
+    client_header_buffer_size 1k;  
+    large_client_header_buffers 4 4k;  
+    #设定请求缓冲， end  
+  
+    #设定提供服务的服务器，start  
+    #我的接口服务器，两台  
+    upstream myweb{  
+        #weigth       表示权重，权值越大，分配几率越大  
+        #max_fails    当有max_fails个请求失败，就表示后端的服务器不可用，默认为1，将其设置为0可以关闭检查  
+        #fail_timeout 在以后的fail_timeout时间内nginx不会再把请求发往已检查出标记为不可用的服务器  
+        server 120.79.253.180:8080 weight=5 max_fails=5 fail_timeout=600s;  
+    }  
+    #设定提供服务的服务器，end  
+  
+    #gzip  on;  
+  
+    server {  
+        listen       80;  
+        server_name  localhost;  
+    #设定请求转发规则， start  
+    #规则采用最长匹配，即长度最长优先匹配，最后不匹配的走/进行匹配  
+    #规则一  
+    location / {  
+            root   html;  
+            index  index.html index.htm;  
+        }  
+    #设定请求转发规则， end  
+        error_page   500 502 503 504  /50x.html;  
+        location = /50x.html {  
+            root   html;  
+        }  
+    }  
+  
+    server {  
+        listen       8080;  
+        server_name  localhost;  
+    #设定请求转发规则， start  
+    #规则采用最长匹配，即长度最长优先匹配，最后不匹配的走/进行匹配  
+    #规则一  
+    location / {  
+            root   html;  
+            index  index.html index.htm;  
+        }  
+    #规则二，查询接口一  
+    location /weixin {  
+        proxy_pass http://myweb;  
+    #转发请求的原IP地址，程序中通过request.getHeader("Proxy-Client-IP")获得ip  
+        proxy_set_header Host      $host;  
+    #如果是有涉及redirect的服务，一定要加上端口8081，否则默认tomcat在redirect时候默认找80端口  
+        #proxy_set_header Host $host:8081;  
+        proxy_set_header Proxy-Client-IP $remote_addr;  
+        }  
+    
+    #设定请求转发规则， end  
+        error_page   500 502 503 504  /50x.html;  
+        location = /50x.html {  
+            root   html;  
+        }  
+    }  
+}
+
+

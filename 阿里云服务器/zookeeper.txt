@@ -1,0 +1,9 @@
+wget http://mirrors.hust.edu.cn/apache/zookeeper/stable/zookeeper-3.4.12.tar.gz
+
+tar -zxvf  zookeeper-3.4.12.tar.gz
+
+复制一份配置文件
+cp zoo_sample.cfg zoo.cfg
+
+启动zk
+sh zkServer.sh start

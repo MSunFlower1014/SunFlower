@@ -1,0 +1,28 @@
+安装git：
+apt-get install git
+
+创建一个git用户，用来运行git服务：
+adduser git
+
+初始化Git仓库：
+git init --bare sample.git
+
+git checkout -b dev  切换分支，没有则创建
+
+git remote add mayt git@120.79.253.180:/mayantao/gitRepertory/weixin.git
+
+git clone git@120.79.253.180:/mayantao/gitRepertory/weixin.git
+
+使用git init初始化一个新的目录时，会生成一个.git的目录，该目录即为本地仓库。
+
+git add .
+git commit    
+填写提交日志
+git push
+
+git clone ssh://git@120.79.253.180:/mayantao/gitRepertory/weixin.git
+
+ssh -T git@10.9.236.76:10022/IISC-SH-NJ/h5-web.git
+
+ssh://git@10.9.236.76:10022/IISC-SH-NJ/h5-web.git
+
