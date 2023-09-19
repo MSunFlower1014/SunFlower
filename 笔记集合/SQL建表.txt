@@ -1,4 +1,4 @@
-ÁĞÃû    Êı¾İÀàĞÍ    Ä¬ÈÏÖµ   Ô¼Êø
+åˆ—å    æ•°æ®ç±»å‹    é»˜è®¤å€¼   çº¦æŸ
 create table customer(
    id number(7) primary key,
    name char(25) not null,
@@ -13,10 +13,10 @@ values(10,'Jack','110')
 insert into customer
 values(11,'Smith','120')
 
-É¾³ı±í
+åˆ é™¤è¡¨
 drop table customer
 
-¸Ä±äÔ¼ÊøÃû
+æ”¹å˜çº¦æŸå
 create table customer(
    id number(7) constraint customer_id_pk primary key,
    name char(25) constraint customer_name_nn not null,
@@ -26,9 +26,9 @@ create table customer(
 insert into customer
 values(10,'Tom','1110')
 
-Ö÷¼üÔ¼Êø¿ÉÒÔĞ´ÔÚÁĞºó£¬Ò²¿ÉÒÔĞ´ÔÚËùÓĞÁĞÖ®ºó¡£ÁĞ¼¶Ô¼ÊøºÍ±í¼¶Ô¼Êø
-primary key   ÃèÊöÒ»ÁĞÎªÖ÷¼ü£¬·Ç¿ÕÇÒÎ¨Ò»    not null ·Ç¿Õ    unique  Î¨Ò»
-ÁªºÏÖ÷¼üÖ»ÄÜÔÚ±í¼¶ÖĞÉùÃ÷£¬ÎŞ·¨ÔÙÁĞ¼¶Ô¼ÊøÉùÃ÷
+ä¸»é”®çº¦æŸå¯ä»¥å†™åœ¨åˆ—åï¼Œä¹Ÿå¯ä»¥å†™åœ¨æ‰€æœ‰åˆ—ä¹‹åã€‚åˆ—çº§çº¦æŸå’Œè¡¨çº§çº¦æŸ
+primary key   æè¿°ä¸€åˆ—ä¸ºä¸»é”®ï¼Œéç©ºä¸”å”¯ä¸€    not null éç©º    unique  å”¯ä¸€
+è”åˆä¸»é”®åªèƒ½åœ¨è¡¨çº§ä¸­å£°æ˜ï¼Œæ— æ³•å†åˆ—çº§çº¦æŸå£°æ˜
 
 drop table customer;
 
@@ -42,23 +42,23 @@ create table customer(
    unique(name)
 )
 
-ÁªºÏÖ÷¼ü
+è”åˆä¸»é”®
 create table s_t_table(
    s_id number(7),
    t_id number(7),
   primary key(s_id,t_id)
 )
 
-¼ì²éĞÍÔ¼Êø£¬Ö»ÄÜÊÇÖ¸¶¨µÄ¼¸¸öÖµ
+æ£€æŸ¥å‹çº¦æŸï¼Œåªèƒ½æ˜¯æŒ‡å®šçš„å‡ ä¸ªå€¼
 create table student(
-   gender varchar(5) check(gender in('ÄĞ'£¬'Å®'))
+   gender varchar(5) check(gender in('ç”·'ï¼Œ'å¥³'))
 )
 
 insert into student
-values('ÄĞ')
+values('ç”·')
 
-±í¿ÉÒÔÍ¨¹ı×Ó²éÑ¯´´½¨£¨¸´ÖÆÒ»ÕÅ±í£©
-Í¨¹ı×Ó²éÑ¯´´½¨±í£¬Ö»»á±£Áô·Ç¿ÕÔ¼Êø¡£¼´Ö÷¼üÊ§Ğ§ÁË
+è¡¨å¯ä»¥é€šè¿‡å­æŸ¥è¯¢åˆ›å»ºï¼ˆå¤åˆ¶ä¸€å¼ è¡¨ï¼‰
+é€šè¿‡å­æŸ¥è¯¢åˆ›å»ºè¡¨ï¼Œåªä¼šä¿ç•™éç©ºçº¦æŸã€‚å³ä¸»é”®å¤±æ•ˆäº†
 create table emp1(
     id number(7),
    last_name varchar2(25),
@@ -70,16 +70,16 @@ as
 select id,last_name,salary
 from s_emp;
 
-Ö»¸´ÖÆ½á¹¹£¬²»ÒªÊı¾İ
+åªå¤åˆ¶ç»“æ„ï¼Œä¸è¦æ•°æ®
 create table emp2
 as
 select *
 from s_emp
 where 1=0;
 
-ÉèÖÃÄ¬ÈÏÖµ  default
+è®¾ç½®é»˜è®¤å€¼  default
 create table student2(
-   name varchar2(10) default 'Àî¹·µ°',
+   name varchar2(10) default 'æç‹—è›‹',
    age number(7) default 0
 )
 
@@ -102,13 +102,13 @@ select id,last_name,salary
 from emp1
 where salary >1500;
 
-Ìí¼ÓĞÂµÄÁĞ
+æ·»åŠ æ–°çš„åˆ—
 alter table emp1
 add(
     manager_id number(7)
 )
 
-É¾³ı±íÖĞÁĞ
+åˆ é™¤è¡¨ä¸­åˆ—
 alter table emp1
 drop column manager_id
 
@@ -117,16 +117,16 @@ modify(
     salary varchar2(25) not null
 )
 
-Í¨¹ı×Öµä£¬ÏµÍ³±í²éÑ¯ÓÃ»§±íµÄĞÅÏ¢
+é€šè¿‡å­—å…¸ï¼Œç³»ç»Ÿè¡¨æŸ¥è¯¢ç”¨æˆ·è¡¨çš„ä¿¡æ¯
 select table_name,column_name,date_type,data_length
 from user_tab_columns
 order by table_name;
 
-ÓÃ»§´´½¨µÄ±í
+ç”¨æˆ·åˆ›å»ºçš„è¡¨
 select table_name,num_rows
 from user_tables;
 
-¼¶ÁªÉ¾³ı£¬µ±É¾³ıÍâ¼üÁĞÊ±É¾³ı£¬»áÉ¾³ıÍâ¼üÁĞËù¹ØÁªµÄĞÅÏ¢
+çº§è”åˆ é™¤ï¼Œå½“åˆ é™¤å¤–é”®åˆ—æ—¶åˆ é™¤ï¼Œä¼šåˆ é™¤å¤–é”®åˆ—æ‰€å…³è”çš„ä¿¡æ¯
 create table my_order(
 	id number(7) primary key,
 	name varchar2(20) not null,
@@ -134,63 +134,63 @@ create table my_order(
 		on delete cascade
   );
 
-Çå¿Õ±í   Çå¿ÕÊı¾İ
+æ¸…ç©ºè¡¨   æ¸…ç©ºæ•°æ®
 delete from 
 1 DML
-2 É¾³ıÊı¾İ£¬µ«ÊÇ²»Çå¿Õ±í¿Õ¼ä
-ÒÆµ½»ØÊÕÕ¾
+2 åˆ é™¤æ•°æ®ï¼Œä½†æ˜¯ä¸æ¸…ç©ºè¡¨ç©ºé—´
+ç§»åˆ°å›æ”¶ç«™
 
 truncate
 1 DDL
-2 É¾³ıÊı¾İ£¬Çå¿Õ±í¿Õ¼ä
-Çå¿Õ»ØÊÕÕ¾
+2 åˆ é™¤æ•°æ®ï¼Œæ¸…ç©ºè¡¨ç©ºé—´
+æ¸…ç©ºå›æ”¶ç«™
 
-comment Ìí¼Ó±íµÄÃèÊöĞÅÏ¢
+comment æ·»åŠ è¡¨çš„æè¿°ä¿¡æ¯
 comment on table s_emp
-is '²âÊÔÓÃ±í£¬±íÊ¾ÏúÊÛ¹ËÎÊ';
+is 'æµ‹è¯•ç”¨è¡¨ï¼Œè¡¨ç¤ºé”€å”®é¡¾é—®';
 
-ĞòÁĞ
+åºåˆ—
 create sequence my_seq
 increment by 2
 start with 10;
 
-»ñÈ¡ĞòÁĞµÄÏÂÒ»¸öÖµ
+è·å–åºåˆ—çš„ä¸‹ä¸€ä¸ªå€¼
 select seq1.nextval
 from dual;
 
-ÊÓÍ¼   ĞèÒªÈ¨ÏŞ£¬Í¨¹ıgrant create any view to briup(¹ÜÀíÔ±È¨ÏŞ)
+è§†å›¾   éœ€è¦æƒé™ï¼Œé€šè¿‡grant create any view to briup(ç®¡ç†å‘˜æƒé™)
 create view v_emp
 as
 select id,last_name,salary
 from s_emp
 
-¼òµ¥ÊÓÍ¼   Ö±½ÓÍ¨¹ıµ¥±íÌõ¼ş²éÑ¯£¬ÔÊĞíÖ±½ÓÔÚÊÓÍ¼ÉÏ½øĞĞÔö£¬É¾£¬ĞŞ¸ÄÊı¾İ¡£»á¹ØÁªµ½Ô­±íÖĞ£¬¸ü¸ÄÔ­±íÖĞÊı¾İÒ²»á¹ØÁªµ½ÊÓÍ¼ÖĞ¡£
+ç®€å•è§†å›¾   ç›´æ¥é€šè¿‡å•è¡¨æ¡ä»¶æŸ¥è¯¢ï¼Œå…è®¸ç›´æ¥åœ¨è§†å›¾ä¸Šè¿›è¡Œå¢ï¼Œåˆ ï¼Œä¿®æ”¹æ•°æ®ã€‚ä¼šå…³è”åˆ°åŸè¡¨ä¸­ï¼Œæ›´æ”¹åŸè¡¨ä¸­æ•°æ®ä¹Ÿä¼šå…³è”åˆ°è§†å›¾ä¸­ã€‚
 
 update v_emp
 set last_name = 'hello'
 where id=99
 
-¸´ÔÓÊÓÍ¼   Í¨¹ıgroup by »òÕß Á¬½Ó²éÑ¯£¬  ÔÚÊÓÍ¼ÉÏÖ»ÄÜ½øĞĞ²éÑ¯¡£µ«Ô­±íÖĞµÄ¸ü¸Ä»áÓ°ÏìÊÓÍ¼
+å¤æ‚è§†å›¾   é€šè¿‡group by æˆ–è€… è¿æ¥æŸ¥è¯¢ï¼Œ  åœ¨è§†å›¾ä¸Šåªèƒ½è¿›è¡ŒæŸ¥è¯¢ã€‚ä½†åŸè¡¨ä¸­çš„æ›´æ”¹ä¼šå½±å“è§†å›¾
 
-ÊÓÍ¼Ã»ÓĞ alterÃüÁî,ĞŞ¸ÄÊÓÍ¼Ê¹ÓÃcreate or replace view
+è§†å›¾æ²¡æœ‰ alterå‘½ä»¤,ä¿®æ”¹è§†å›¾ä½¿ç”¨create or replace view
 create or replace view  v_emp
 as
 select e.last_name,e.id,d.name,e.salary
 from s_emp e,s_dept d
 where e.dept_id = d.id
 
-with read only    Ö»ÔÊĞí¶Á
-with check option ´´½¨ÊÓÍ¼Ê±£¬ËùÓÃµ½µÄÁĞ²»ÔÊĞíĞŞ¸Ä
+with read only    åªå…è®¸è¯»
+with check option åˆ›å»ºè§†å›¾æ—¶ï¼Œæ‰€ç”¨åˆ°çš„åˆ—ä¸å…è®¸ä¿®æ”¹
 drop view v_emp;
 
-create index Ãû×Ö
-on ±íÃû£¨ÁĞÃû£¬XX,XX£©
+create index åå­—
+on è¡¨åï¼ˆåˆ—åï¼ŒXX,XXï¼‰
 
-ĞĞÁĞ»¥»»
-select  name as ¡°ĞÕÃû¡±,
-max(case subject when 'ÓïÎÄ' then score else 0 end) as ¡°ÓïÎÄ¡± ,
-max(case subject when 'Ó¢Óï' then score else 0 end ) as ¡°Ó¢Óï¡± ,
-max(case subject when 'ÊıÑ§' then score else 0 end )  as ¡°ÊıÑ§¡±
+è¡Œåˆ—äº’æ¢
+select  name as â€œå§“åâ€,
+max(case subject when 'è¯­æ–‡' then score else 0 end) as â€œè¯­æ–‡â€ ,
+max(case subject when 'è‹±è¯­' then score else 0 end ) as â€œè‹±è¯­â€ ,
+max(case subject when 'æ•°å­¦' then score else 0 end )  as â€œæ•°å­¦â€
 from  student
 group by name
 order by name

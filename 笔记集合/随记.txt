@@ -1,42 +1,42 @@
 2017.8.24
-����ľ�̬�������Ա���д��
-�����ԣ���̬��������󶨡����Եľ�̬����ִ�к��Ƕ�Ӧ���࣬�ø�������ʾ�������ִ�е��Ǹ���ľ�̬����������д�ɹ��Ļ���Ӧ��ִ���������д��ķ�����
+父类的静态方法可以被重写吗？
+不可以，静态方法与类绑定。各自的静态方法执行后还是对应的类，用父类对象表示子类对象，执行的是父类的静态方法。而重写成功的话，应该执行子类的重写后的方法。
 callable
-��������FutureTask����Future��װ����ʹ��Thread��װFutureTask����Futureʹ�á�
-�̳߳�
+创建后，用FutureTask或者Future包装，再使用Thread包装FutureTask或者Future使用。
+线程池
 ThreadPoolExecutor  java.util.concurrent.ThreadPoolExecutor
-���ݿ�
+数据库
 
 2017.8.28
-���ģʽС��
-pc��Ľ����+����Ľ����Ƶ
+设计模式小结
+pc版慕课网+下载慕课视频
 
 2017.8.29
-�������ɣ��������ͻ�����ܶࡣ
-���л�ʵ��
-����ģʽ��������ģʽ
+熟能生巧，不打代码就会生疏很多。
+序列化实现
+代理模式，访问者模式
 
 2017.9.1
-�����ͣ������ࣩ
-��̬Ӳ��
+看博客（两大类）
+固态硬盘
 
 2017.9.11
-JVM����
-java��Ϸ
+JVM传参
+java游戏
 
 2017.9.13
-���ݿ����л���
-����--JDBC
+数据库行列互换
+博客--JDBC
 
 2017.9.14
-�������
-��Ŀ��ϰ
+爬虫程序
+项目练习
 
 2017.9.15
-�������ʽ
+正则表达式
 
 2017.9.19
-JDBC,mybatis����
+JDBC,mybatis博客
 
 2017.9.20
-maven��gradle��tomcat
+maven，gradle，tomcat
