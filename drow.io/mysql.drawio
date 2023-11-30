@@ -1,0 +1,217 @@
+<mxfile host="app.diagrams.net" modified="2023-11-30T09:17:58.547Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="cc7fzcY35FOlOzDfQIbT" version="21.3.7" type="device">
+  <diagram name="第 1 页" id="KNNN5ONrkp58GuFentZa">
+    <mxGraphModel dx="2363" dy="847" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-2" target="mpuTkLA-WrsquHXd4yxd-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-2" target="mpuTkLA-WrsquHXd4yxd-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-2" target="mpuTkLA-WrsquHXd4yxd-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-2" value="索引类型" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-3" target="mpuTkLA-WrsquHXd4yxd-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-220" y="240" />
+              <mxPoint x="-220" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-3" target="mpuTkLA-WrsquHXd4yxd-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-3" target="mpuTkLA-WrsquHXd4yxd-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-3" value="哈希索引" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-62" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-5" target="mpuTkLA-WrsquHXd4yxd-51">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-5" value="搜索树" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-7" target="mpuTkLA-WrsquHXd4yxd-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-7" value="有序数组" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-17" value="写" style="rounded=1;whiteSpace=wrap;html=1;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="-205" y="450" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-19" value="读" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-210" y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-57" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-23" target="mpuTkLA-WrsquHXd4yxd-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="105" y="440" />
+              <mxPoint x="105" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-23" value="1.精准读：O(n)&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;2.范围读:n * O(n)&lt;br&gt;3.复杂条件查询:O(n ² )" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="330" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-58" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-25" target="mpuTkLA-WrsquHXd4yxd-32">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="105" y="530" />
+              <mxPoint x="105" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-25" value="写:O(n)&lt;br&gt;位置随机，无法充分利用内存页与缓存，不适合硬盘读写&lt;br&gt;扩展成本高，原始数据需迁移" style="rounded=1;whiteSpace=wrap;html=1;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="450" width="235" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-30" value="使用场景" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-205" y="580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-31" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-3" target="mpuTkLA-WrsquHXd4yxd-30">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="370" as="sourcePoint" />
+            <mxPoint x="270" y="320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-250" y="240" />
+              <mxPoint x="-250" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-32" value="等值查询，内存操作&lt;br&gt;Reids，Memcached" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="580" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-43" target="mpuTkLA-WrsquHXd4yxd-45">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="414" y="430" />
+              <mxPoint x="414" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-43" value="1.精准读：O(Log n)&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;2.范围读: O(Log n)&lt;br&gt;3.复杂条件查询:O(Log n)" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="299" y="330" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-45" target="mpuTkLA-WrsquHXd4yxd-47">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="417" y="570" />
+              <mxPoint x="417" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-45" value="写 : n * O(Log n)&lt;br&gt;写入需要重新排序" style="rounded=1;whiteSpace=wrap;html=1;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="299" y="450" width="235" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-47" value="静态存储查询，无新增操作" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="299" y="580" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-51" target="mpuTkLA-WrsquHXd4yxd-53">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="724" y="440" />
+              <mxPoint x="724" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-51" value="1.精准读：O(Log n)&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;2.范围读: O(Log n)&lt;br&gt;3.复杂条件查询:O(Log n)" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="609" y="330" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-64" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-53" target="mpuTkLA-WrsquHXd4yxd-55">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="732" y="560" />
+              <mxPoint x="732" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-67" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-53" target="mpuTkLA-WrsquHXd4yxd-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-53" value="写:&amp;nbsp; O(n)&lt;br&gt;追加写" style="rounded=1;whiteSpace=wrap;html=1;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="614" y="450" width="235" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-55" value="Top K问题" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="609" y="580" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-69" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-66" target="mpuTkLA-WrsquHXd4yxd-68">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-66" value="B+树：&lt;br&gt;1.多子树，低树高，查盘次数少&lt;br&gt;2.单子节点多数据，低树高，充分利用磁盘预读Page Cache&lt;br&gt;3.叶子结点双向链表，便于范围搜索&lt;br&gt;4.子节点数量可变，无需频繁重新平衡&lt;br&gt;5.非叶子结点只保存索引key，叶子结点才保存value，降低树高，方便范围查询" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="340" width="280" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-68" value="&lt;p style=&quot;word-break: break-word; font-family: Times; text-align: start; font-size: 13px;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;主键索引的叶子节点存的是整行数据。在InnoDB里，主键索引也被称为聚簇索引（clustered index）。&lt;/font&gt;&lt;/p&gt;&lt;p style=&quot;word-break: break-word; font-family: Times; text-align: start; font-size: 13px;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;非主键索引的叶子节点内容是主键的值。在InnoDB里，非主键索引也被称为二级索引（secondary index）。&lt;/font&gt;&lt;/p&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;磁盘相关：https://tech.meituan.com/2017/05/19/about-desk-io.html&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1241" y="425" width="480" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-72" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-70" target="mpuTkLA-WrsquHXd4yxd-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-70" value="索引选择" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-190" y="920" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-74" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-71" target="mpuTkLA-WrsquHXd4yxd-73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-71" value="解析器" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-76" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-73" target="mpuTkLA-WrsquHXd4yxd-75">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-82" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-73" target="mpuTkLA-WrsquHXd4yxd-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-73" value="优化器" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-78" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-75" target="mpuTkLA-WrsquHXd4yxd-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-75" value="执行器" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-77" value="查询结果" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-81" value="执行代价预算比较：IO代价+CPU代价&lt;br&gt;IO代价相关：数据行数、读盘次数、回表次数&lt;br&gt;CPU代价：数据量、索引查询、排序、分组、去重&lt;br&gt;&lt;br&gt;排序字段无索引时，优化器可能会选择放弃索引进行全表扫描，即索引过滤+回表+排序代价可能大于 全表扫描排序" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="42.5" y="1040" width="495" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-85" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-83" target="mpuTkLA-WrsquHXd4yxd-84">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-83" value="事务MVCC" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-180" y="1400" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-87" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-84" target="mpuTkLA-WrsquHXd4yxd-86">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-91" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-84" target="mpuTkLA-WrsquHXd4yxd-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-84" value="每个事物分配id" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-89" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mpuTkLA-WrsquHXd4yxd-86" target="mpuTkLA-WrsquHXd4yxd-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-86" value="数据更改时新增版本数据" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="1410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-88" value="根据隔离级别决定可读事物水位" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="1410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mpuTkLA-WrsquHXd4yxd-90" value="innodb将所有事物id存在有序数组中&lt;br&gt;可重复度隔离：仅可查看低于自身水位已提交数据&lt;br&gt;读提交隔离：可查看最新提交事物的水位数据&lt;br&gt;读未提交隔离：可查看所有数据" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-50" y="1540" width="260" height="160" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
